@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://250cupmv2u1i"]
+
+[ext_resource type="Script" path="res://code/Manager.cs" id="1_1ppdr"]
+[ext_resource type="PackedScene" uid="uid://c6cvwm2dny248" path="res://prefabs/Controls.tscn" id="2_nxixi"]
+[ext_resource type="Script" path="res://code/CameraMovement.cs" id="3_paf1r"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_jq1k4"]
+use_colors = true
+use_custom_data = true
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_1ppdr")
+GridSize = Vector2i(384, 198)
+CellSize = 4
+InactiveColor = Color(0.309804, 0.309804, 0.309804, 1)
+
+[node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="."]
+multimesh = SubResource("MultiMesh_jq1k4")
+
+[node name="GenerationTimer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+limit_smoothed = true
+script = ExtResource("3_paf1r")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="Panel" parent="Camera2D/CanvasLayer" instance=ExtResource("2_nxixi")]
+
+[connection signal="timeout" from="GenerationTimer" to="." method="OnTimerTimeout"]

@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6cvwm2dny248"]
+
+[ext_resource type="Script" path="res://code/Controls.cs" id="1_0jpfd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfe1o"]
+bg_color = Color(0.0352941, 0.0352941, 0.0352941, 1)
+
+[node name="Panel" type="Panel"]
+texture_filter = 2
+offset_top = 990.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lfe1o")
+script = ExtResource("1_0jpfd")
+
+[node name="Play_Pause" type="Button" parent="."]
+layout_mode = 2
+offset_left = 1620.0
+offset_top = 20.0
+offset_right = 1890.0
+offset_bottom = 71.0
+toggle_mode = true
+text = "PLAY"
+
+[node name="GenPerSecond" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 1260.0
+offset_top = 30.0
+offset_right = 1480.0
+offset_bottom = 70.0
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+
+[node name="Name" type="Label" parent="GenPerSecond"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -15.0
+offset_right = 191.0
+offset_bottom = 11.0
+text = "Generations Per Second"
+
+[node name="Value" type="Label" parent="GenPerSecond"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 5.0
+offset_right = 270.0
+offset_bottom = 40.0
+text = "NAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AliveColor" type="ColorPickerButton" parent="."]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 20.0
+offset_right = 480.0
+offset_bottom = 70.0
+color = Color(1, 1, 1, 1)
+
+[node name="Label" type="Label" parent="AliveColor"]
+layout_mode = 0
+offset_left = 90.0
+offset_right = 270.0
+offset_bottom = 50.0
+text = "Alive Cell Color"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeadColor" type="ColorPickerButton" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 70.0
+color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[node name="Label" type="Label" parent="DeadColor"]
+layout_mode = 0
+offset_left = 90.0
+offset_right = 270.0
+offset_bottom = 50.0
+text = "Dead Cell Color"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="toggled" from="Play_Pause" to="." method="OnPlayPausedToggled"]
+[connection signal="value_changed" from="GenPerSecond" to="." method="OnGenPerSecondChanged"]
+[connection signal="color_changed" from="AliveColor" to="." method="OnAliveColorChanged"]
