@@ -4,4 +4,8 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>ConwaysGameoflife</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="prefabs\**" />
+    <EmbeddedResource Remove="prefabs\**" />
+  </ItemGroup>
 </Project>
